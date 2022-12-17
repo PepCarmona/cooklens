@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 
-import { Week } from '../../../types';
+import { Week } from '../../../../types';
 import { getWeek } from '../../../shared/Calendar/CalendarModel';
 
 export const NUMBER_OF_FUTURE_WEEKS = 52;

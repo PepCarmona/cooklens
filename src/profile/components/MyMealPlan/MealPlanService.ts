@@ -1,6 +1,6 @@
 import { MealPlantEndpoint } from '../../../api/endpoints/mealPlan';
 import { loadingState } from '../../../LoadingState';
-import { DayPlan, MealPlan } from '../../../types';
+import { DayPlan, MealPlan } from '../../../../types';
 import { watch } from 'vue';
 import { MealPlanState } from './MealPlanState';
 
