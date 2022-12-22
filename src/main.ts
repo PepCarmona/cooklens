@@ -53,6 +53,8 @@ app.use(router);
 app.use(VueAxios, axios);
 app.provide('axios', app.config.globalProperties.axios);
 
+axios.get('/api/hello');
+
 app.provide(RecipeStateKey, recipeState);
 app.provide(UserStateKey, userState);
 app.provide(PaginationStatekey, paginationState);

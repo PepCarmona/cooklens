@@ -4,9 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "dev:functions": "netlify functions:serve --functions functions --port 4000",
-    "build": "vue-tsc && vite build",
+    "dev": "concurrently --kill-others \"npm run dev:site\" \"npm run dev:api\"",
+    "dev:site": "vite",
+    "dev:api": "netlify functions:serve --functions functions --port 4000",
+    "build:site": "vue-tsc && vite build",
+    "build:site:zip": "npm run build:site && zip -r site.zip dist",
     "build:functions": "rm -r -f dist/functions && netlify functions:build -s functions -f dist/functions",
     "preview": "vite preview",
     "format": "prettier --config .prettierrc \"**/*.{js,json,ts,tsx,css,vue}\" --write"
@@ -26,6 +28,7 @@
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "@vitejs/plugin-vue": "^3.2.0",
+    "concurrently": "^7.6.0",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.3.1",

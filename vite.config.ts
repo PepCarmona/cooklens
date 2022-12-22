@@ -9,5 +9,12 @@ export default defineConfig({
   },
   server: {
     port: 8080,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:4000/.netlify/functions',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
   },
 });
