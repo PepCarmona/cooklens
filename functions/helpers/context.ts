@@ -7,10 +7,10 @@ export function getFunctionUrl(
   const data = context.clientContext?.custom?.netlify;
 
   if (!data) {
-    console.log('development', event.rawUrl);
     return event.rawUrl;
   }
+
   const decoded = JSON.parse(Buffer.from(data, 'base64').toString('utf-8'));
-  console.log('production', decoded);
-  return decoded;
+
+  return decoded.site_url;
 }
