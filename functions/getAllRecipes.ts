@@ -39,6 +39,7 @@ export const handler: Handler = async (event, context) => {
       break;
   }
 
+  console.log('function url', getFunctionUrl(event, context));
   const host = new URL(getFunctionUrl(event, context)).host;
   const url = new URL(host + '/api/getAllRecipes');
 
