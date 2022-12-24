@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongoose';
 import { PaginatedResponse } from './PaginationTypes';
 import { UserInfo } from './UserTypes';
 
@@ -54,7 +55,7 @@ interface BaseRecipe {
 }
 
 export interface DatabaseRecipe extends BaseRecipe {
-  author?: string;
+  author?: ObjectId;
 }
 
 export interface DatabaseRecipeWithPopulatedAuthor extends BaseRecipe {

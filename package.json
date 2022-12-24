@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "netlify dev",
+    "dev": "netlify dev --targetPort 8080",
     "dev:site": "vite",
     "dev:api": "netlify functions:serve --functions functions --port 4000",
     "build": "netlify build",
@@ -17,6 +17,7 @@
     "axios": "^0.21.3",
     "core-js": "^3.6.5",
     "dayjs": "^1.10.7",
+    "mongoose": "^6.8.1",
     "rxjs": "^6.6.3",
     "swiper": "^7.3.1",
     "vue": "^3.2.41",

@@ -16,7 +16,7 @@ export const URI = {
   recipes: {
     get: `${apiUrl}/recipes/get`,
     getById: `${apiUrl}/recipes/getById`,
-    getRandom: `${apiUrl}/recipes/getRandom`,
+    getRandom: `/api/randomRecipe`,
     getByUser: `${apiUrl}/recipes/getByUser`,
     add: `${apiUrl}/recipes/add`,
     update: `${apiUrl}/recipes/update`,

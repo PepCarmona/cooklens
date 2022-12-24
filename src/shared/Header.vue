@@ -13,9 +13,9 @@
         Cooklens
       </router-link>
       <div class="items">
-        <router-link @click="showMenu = false" to="/recipes"
-          >Recipes</router-link
-        >
+        <router-link @click="showMenu = false" to="/recipes">
+          Recipes
+        </router-link>
         <template v-if="!!authenticatedUser">
           <router-link @click="showMenu = false" to="/profile">
             My Profile
@@ -24,12 +24,15 @@
             My Meal Plan
           </router-link>
         </template>
-        <router-link v-else @click="showMenu = false" to="/auth"
-          >Login</router-link
-        >
-        <router-link @click="showMenu = false" to="/recipe/form"
-          >Add recipe</router-link
-        >
+        <router-link v-else @click="showMenu = false" to="/auth">
+          Login
+        </router-link>
+        <router-link @click="showMenu = false" to="/recipe/form">
+          Add recipe
+        </router-link>
+        <router-link @click="showMenu = false" to="/recipe/random?random=true">
+          Random recipe
+        </router-link>
       </div>
     </div>
   </CustomModal>
