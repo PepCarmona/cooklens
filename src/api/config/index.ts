@@ -1,22 +1,10 @@
-import { isFeatureEnabled } from '../../helpers/featureToggle';
-
-const backend = {
-  local: 'http://localhost:3000/api',
-  production: `https://cooklens.pepcarmona.com/api`,
-};
-
-const apiUrl =
-  (location.host.indexOf('localhost') !== -1 ||
-    isFeatureEnabled('local-server')) &&
-  !isFeatureEnabled('prod-server')
-    ? backend.local
-    : backend.production;
+const apiUrl = `${location.protocol}//${location.host}/api`;
 
 export const URI = {
   recipes: {
-    get: `${apiUrl}/recipes/get`,
+    get: `${apiUrl}/getAllRecipes`,
     getById: `${apiUrl}/recipes/getById`,
-    getRandom: `/api/randomRecipe`,
+    getRandom: `${apiUrl}/randomRecipe`,
     getByUser: `${apiUrl}/recipes/getByUser`,
     add: `${apiUrl}/recipes/add`,
     update: `${apiUrl}/recipes/update`,
