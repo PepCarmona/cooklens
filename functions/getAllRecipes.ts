@@ -3,7 +3,7 @@ import { CustomError } from './helpers/errors';
 import Recipe from './models/recipe.model';
 import { paginate } from './helpers/pagination';
 import { connectDB } from './helpers/database';
-import { getFunctionUrl } from './helpers/context';
+import { getFunctionHost } from './helpers/context';
 
 connectDB(process.env.MONGODB_URI);
 
@@ -39,9 +39,9 @@ export const handler: Handler = async (event, context) => {
       break;
   }
 
-  console.log('function url', getFunctionUrl(event, context));
-  const host = new URL(getFunctionUrl(event, context)).host;
-  const url = new URL(host + '/api/getAllRecipes');
+  console.log('function host', getFunctionHost(event, context));
+  const url = new URL(getFunctionHost(event, context) + '/api/getAllRecipes');
+  console.log('function url', url);
 
   if (searchType !== 'title') {
     url.searchParams.append('searchType', searchType.toString());
