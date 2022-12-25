@@ -7,7 +7,7 @@ import './models/user.model';
 
 connectDB(process.env.MONGODB_URI);
 
-const handler: Handler = async (event, context) => {
+const handler: Handler = async () => {
   let count: number;
 
   try {

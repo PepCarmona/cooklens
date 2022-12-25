@@ -39,9 +39,7 @@ export const handler: Handler = async (event, context) => {
       break;
   }
 
-  console.log('function host', getFunctionHost(event, context));
   const url = new URL(getFunctionHost(event, context) + '/api/getAllRecipes');
-  console.log('function url', url);
 
   if (searchType !== 'title') {
     url.searchParams.append('searchType', searchType.toString());

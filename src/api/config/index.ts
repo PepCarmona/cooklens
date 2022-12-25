@@ -2,9 +2,9 @@ const apiUrl = `${location.protocol}//${location.host}/api`;
 
 export const URI = {
   recipes: {
-    get: `${apiUrl}/getAllRecipes`,
+    get: `${apiUrl}/recipeGetAll`,
     getById: `${apiUrl}/recipes/getById`,
-    getRandom: `${apiUrl}/randomRecipe`,
+    getRandom: `${apiUrl}/recipeRandom`,
     getByUser: `${apiUrl}/recipes/getByUser`,
     add: `${apiUrl}/recipes/add`,
     update: `${apiUrl}/recipes/update`,
