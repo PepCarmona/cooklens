@@ -7,7 +7,7 @@ import './models/user.model';
 
 connectDB(process.env.MONGODB_URI);
 
-export const handler: Handler = async (event, context) => {
+export const handler: Handler = async (event) => {
   const recipeId = event.queryStringParameters.id;
 
   if (!recipeId) {

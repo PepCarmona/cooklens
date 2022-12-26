@@ -39,7 +39,7 @@ export const handler: Handler = async (event, context) => {
       break;
   }
 
-  const url = new URL(getFunctionHost(event, context) + '/api/getAllRecipes');
+  const url = new URL(getFunctionHost(event, context) + '/api/recipeGetAll');
 
   if (searchType !== 'title') {
     url.searchParams.append('searchType', searchType.toString());
@@ -58,9 +58,6 @@ export const handler: Handler = async (event, context) => {
 
     return {
       statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
       body: JSON.stringify(paginatedResult),
     };
   } catch (error) {
