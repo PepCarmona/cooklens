@@ -20,7 +20,6 @@ interface RecipesEndpointInterface {
   getRecipe(id: string): Promise<ClientRecipe>;
   getRandomRecipe(): Promise<ClientRecipe>;
   deleteRecipe(recipe: ClientRecipe): Promise<ClientRecipe>;
-  getIntegratedSites(): Promise<IntegratedSite[]>;
 }
 
 export class RecipesEndpoint
@@ -91,9 +90,5 @@ export class RecipesEndpoint
     url.searchParams.append('id', recipe._id!);
 
     return this.delete(url.toString());
-  }
-
-  public getIntegratedSites(): Promise<IntegratedSite[]> {
-    return this.get(URI.recipes.integratedSites);
   }
 }
