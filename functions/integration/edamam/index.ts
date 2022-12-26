@@ -1,4 +1,4 @@
-import { RecipeIntegration } from '..';
+import { RecipeIntegration } from '../base';
 import { getTimeFromMetadataString } from '../../helpers/dateTime';
 import {
   getIngredientsFromMetadata,
