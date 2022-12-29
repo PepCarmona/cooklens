@@ -7,7 +7,7 @@ import { UserInfo } from '../../types';
 export interface HandlerEventAuthenticated extends HandlerEvent {
   auth: UserDecodedPayload;
 }
-interface UserDecodedPayload extends JwtPayload {
+export interface UserDecodedPayload extends JwtPayload {
   user: UserInfo;
 }
 

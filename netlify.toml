@@ -13,3 +13,5 @@
   to = "/index.html"
   status = 200
 
+[functions]
+  external_node_modules = ["mongodb", "keyv"]
