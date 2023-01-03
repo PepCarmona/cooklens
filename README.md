@@ -1,16 +1,15 @@
-# Vue 3 + TypeScript + Vite
+# Cooklens
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+The idea behind this project was to create an easy way to save recipes from the internet into my own personal recipe book. With that base concept in mind, a few more features were added such as integration with Edamam API, meal plans and authentication.
 
-## Recommended IDE Setup
+## Technologies
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+This project repository implements a JAMstack architecture, where the backend is composed by lambda functions that works as independent microservices which work together over the same database to provide the user with all the functionality.
 
-## Type Support For `.vue` Imports in TS
+- The frontend part of the application is written with Vue3 in Typescript, focusing on a custom state management system that relies on several composable states divided by domain.
+  The layout is formed by several Singe File Components that split the markup, styles and logic into smaller bits that represent visual sections on the web application. The components use the new Composition API provided by Vue 3 in order to reuse functionality over the app, and the styles use the Sass preprocessor so it's easier from a developer perspective to organize, nest and reuse styles.
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+- The backend is compromised in several lambda functions written in Typescript that request and modify data from a cloud MongoDB database using the free tier of Atlas. These functions act as endpoints through a Netlify Functions integration, and also take care of integrations with 3rd party APIs such as Edamam for recipe information.
+  In addition, there's a custom authentication system set up using JWT tokens and one way hashed passwords, trying to keep a decent level of security.
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
-
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+- The whole project is integrated with Netlify through a repository synchronization. Any change pushed into main gets automatically deployed, including both the frontend code and the backend lambda functions.
