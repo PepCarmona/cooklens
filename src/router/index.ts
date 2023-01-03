@@ -47,7 +47,10 @@ const routes: Array<RouteRecordRaw> = [
       import(
         /* webpackChunkName: "authentication" */ '../auth/components/Authentication.vue'
       ),
-    props: (route) => ({ nextUrl: route.query.nextUrl }),
+    props: (route) => ({
+      nextUrl: route.query.nextUrl,
+      recoveryToken: route.query.token,
+    }),
     meta: { noFooter: true, noHeader: true },
     beforeEnter: (to, from, next) => {
       const code = to.query.code?.toString();
@@ -83,6 +86,14 @@ const routes: Array<RouteRecordRaw> = [
         component: () =>
           import(
             /* webpackChunkName: "register" */ '../auth/components/Register.vue'
+          ),
+      },
+      {
+        path: 'forgotPassword',
+        name: 'forgotPassword',
+        component: () =>
+          import(
+            /* webpackChunkName: "forgotPassword" */ '../auth/components/ForgotPassword.vue'
           ),
       },
     ],

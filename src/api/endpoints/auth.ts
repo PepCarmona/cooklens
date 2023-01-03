@@ -50,4 +50,24 @@ export class AuthEndpoint extends Endpoint {
       return x;
     });
   }
+
+  public recoverPassword(user: User): Promise<void> {
+    const url = new URL(URI.auth.recover);
+    url.searchParams.append('email', user.email);
+
+    return this.get(url.toString());
+  }
+
+  public changePassword(
+    email: string,
+    recoveryToken: string,
+    newPassword: string
+  ): Promise<void> {
+    const url = new URL(URI.auth.changePassword);
+    url.searchParams.append('email', email);
+    url.searchParams.append('token', recoveryToken);
+    url.searchParams.append('newPassword', newPassword);
+
+    return this.get(url.toString());
+  }
 }

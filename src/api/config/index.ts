@@ -17,6 +17,7 @@ export const URI = {
     login: `${apiUrl}/authSignin`,
     loginFromToken: `${apiUrl}/authSigninFromToken`,
     recover: `${apiUrl}/authRecoverPassword`,
+    changePassword: `${apiUrl}/authChangePassword`,
   },
   user: {
     addFavRecipe: `${apiUrl}/userAddFavRecipe`,

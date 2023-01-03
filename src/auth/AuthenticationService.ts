@@ -78,6 +78,25 @@ export default function createAuthenticationService(
       .finally(() => (isLoadingAuth.value = false));
   }
 
+  function recoverPassword(user: UserInfo) {
+    isLoadingAuth.value = true;
+
+    return authEndpoint
+      .recoverPassword(user)
+      .finally(() => (isLoadingAuth.value = false));
+  }
+
+  function changePassword(
+    email: string,
+    recoveryToken: string,
+    newPassword: string
+  ) {
+    isLoadingAuth.value = true;
+
+    return authEndpoint
+      .changePassword(email, recoveryToken, newPassword)
+      .finally(() => (isLoadingAuth.value = false));
+  }
   return {
     register,
     logIn,
@@ -85,6 +104,8 @@ export default function createAuthenticationService(
     checkSession,
     validatePassword,
     verifyUser,
+    recoverPassword,
+    changePassword,
   };
 }
 

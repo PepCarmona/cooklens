@@ -27,11 +27,13 @@ import { ref, useAttrs } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
 import Login from '../../auth/components/Login.vue';
 import Register from '../../auth/components/Register.vue';
+import PasswordRecovery from './ForgotPassword.vue';
 
 const attrs = useAttrs();
 
 const router = useRouter();
 const showLogin = ref(true);
+const showPasswordRecovery = ref(false);
 const nextUrl = attrs.nextUrl as string;
 
 function goBack() {

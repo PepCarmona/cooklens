@@ -27,6 +27,12 @@
     </Button>
     <div class="alternative">
       <span>
+        <RouterLink class="toggle-login" :to="{ name: 'forgotPassword' }"
+          >Forgot password?</RouterLink
+        >
+      </span>
+      |
+      <span>
         No account yet?
         <RouterLink class="toggle-login" :to="{ name: 'register' }">
           Register

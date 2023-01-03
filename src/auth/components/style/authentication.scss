@@ -67,16 +67,15 @@
   margin-bottom: 1rem;
   & > span {
     font-size: 13px;
-    &:hover {
-      text-decoration: underline;
-    }
   }
 
   & .toggle-login {
     font-size: 14px;
     color: var(--accent-color);
-    text-decoration-color: black;
     cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
