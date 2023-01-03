@@ -21,8 +21,8 @@ export const URI = {
   },
   user: {
     addFavRecipe: `${apiUrl}/userAddFavRecipe`,
-    removeFavRecipe: `${apiUrl}/user/removeFavRecipe`,
-    getFavRecipes: `${apiUrl}/user/getFavRecipes`,
+    removeFavRecipe: `${apiUrl}/userRemoveFavRecipe`,
+    getFavRecipes: `${apiUrl}/userGetFavRecipes`,
   },
   mealPlan: {
     get: `${apiUrl}/mealPlan/getMealPlan`,
