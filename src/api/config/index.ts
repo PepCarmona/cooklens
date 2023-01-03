@@ -25,7 +25,7 @@ export const URI = {
     getFavRecipes: `${apiUrl}/userGetFavRecipes`,
   },
   mealPlan: {
-    get: `${apiUrl}/mealPlan/getMealPlan`,
-    update: `${apiUrl}/mealPlan/updateMealPlan`,
+    get: `${apiUrl}/mealPlanGet`,
+    update: `${apiUrl}/mealPlanUpdate`,
   },
 };
