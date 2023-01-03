@@ -51,36 +51,31 @@ export const handler: Handler = async (event) => {
       };
     }
 
-    sign(
-      { user: foundUser },
-      process.env.JWTSECRET!,
-      { expiresIn: 31556926 },
-      (error, token) => {
-        if (error) {
-          return {
-            statusCode: 500,
-            body: JSON.stringify(
-              new CustomError('Could not sign token', error)
-            ),
-          };
-        }
+    try {
+      const generatedToken = sign({ user: foundUser }, process.env.JWTSECRET!, {
+        expiresIn: 31556926,
+      });
 
-        if (!('_doc' in foundUser && typeof foundUser._doc === 'object')) {
-          return {
-            statusCode: 500,
-            body: JSON.stringify(new CustomError('Not valid document')),
-          };
-        }
-
+      if (!('_doc' in foundUser && typeof foundUser._doc === 'object')) {
         return {
-          statusCode: 200,
-          body: JSON.stringify({
-            user: { ...foundUser._doc, password: undefined },
-            token,
-          }),
+          statusCode: 500,
+          body: JSON.stringify(new CustomError('Not valid document')),
         };
       }
-    );
+
+      return {
+        statusCode: 200,
+        body: JSON.stringify({
+          user: { ...foundUser._doc, password: undefined },
+          token: generatedToken,
+        }),
+      };
+    } catch (error) {
+      return {
+        statusCode: 500,
+        body: JSON.stringify(new CustomError('Could not sign token', error)),
+      };
+    }
   } catch (error) {
     return {
       statusCode: 500,

@@ -1,6 +1,7 @@
 import { Handler } from '@netlify/functions';
 import { hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import { getFunctionHost } from './helpers/context';
 import { connectDB } from './helpers/database';
 import { CustomError } from './helpers/errors';
 import { sendConfirmationMail } from './helpers/mail';
@@ -9,7 +10,7 @@ import { SignupForm } from './models/user.model';
 
 connectDB(process.env.MONGODB_URI);
 
-export const handler: Handler = async (event) => {
+export const handler: Handler = async (event, context) => {
   let signupForm: SignupForm;
   try {
     signupForm = JSON.parse(event.body).user;
@@ -79,42 +80,38 @@ export const handler: Handler = async (event) => {
       try {
         const savedUser = await user.save();
         try {
-          await sendConfirmationMail(savedUser);
-          let tokenGenerationError: Error;
-          let generatedToken: string;
-          sign(
-            { savedUser },
-            process.env.JWTSECRET!,
-            { expiresIn: 31556926 },
-            (error, token) => {
-              tokenGenerationError = error;
-              generatedToken = token;
-            }
+          await sendConfirmationMail(
+            savedUser,
+            getFunctionHost(event, context)
           );
 
-          if (tokenGenerationError) {
+          try {
+            const generatedToken = sign({ savedUser }, process.env.JWTSECRET!, {
+              expiresIn: 31556926,
+            });
+
+            if (!('_doc' in savedUser && typeof savedUser._doc === 'object')) {
+              return {
+                statusCode: 500,
+                body: JSON.stringify(new CustomError('Not valid document')),
+              };
+            }
+
+            return {
+              statusCode: 200,
+              body: JSON.stringify({
+                user: { ...savedUser._doc, password: undefined },
+                token: generatedToken,
+              }),
+            };
+          } catch (error) {
             return {
               statusCode: 500,
               body: JSON.stringify(
-                new CustomError('Error generating token', tokenGenerationError)
+                new CustomError('Error generating token', error)
               ),
             };
           }
-
-          if (!('_doc' in savedUser && typeof savedUser._doc === 'object')) {
-            return {
-              statusCode: 500,
-              body: JSON.stringify(new CustomError('Not valid document')),
-            };
-          }
-
-          return {
-            statusCode: 200,
-            body: JSON.stringify({
-              user: { ...savedUser._doc, password: undefined },
-              token: generatedToken,
-            }),
-          };
         } catch (error) {
           return {
             statusCode: 500,

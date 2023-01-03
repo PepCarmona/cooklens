@@ -1,5 +1,5 @@
 import { Handler } from '@netlify/functions';
-import { verify } from 'jsonwebtoken';
+import { JwtPayload, verify } from 'jsonwebtoken';
 import { connectDB } from './helpers/database';
 import { CustomError } from './helpers/errors';
 import { UserDecodedPayload } from './middleware/authMiddleware';
@@ -20,15 +20,9 @@ export const handler: Handler = async (event) => {
     };
   }
 
-  verify(token, process.env.JWTSECRET!, async (error, decoded) => {
-    if (error) {
-      return {
-        statusCode: 500,
-        body: JSON.stringify(new CustomError('Unable to verify token', error)),
-      };
-    }
-
-    const payload = decoded as UserDecodedPayload;
+  try {
+    const decodedPayload = verify(token, process.env.JWTSECRET!);
+    const payload = decodedPayload as UserDecodedPayload;
     if (payload.exp <= Date.now() / 1000) {
       return {
         statusCode: 500,
@@ -65,5 +59,10 @@ export const handler: Handler = async (event) => {
         ),
       };
     }
-  });
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify(new CustomError('Unable to verify token', error)),
+    };
+  }
 };
