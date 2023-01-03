@@ -2,7 +2,6 @@ import { Handler } from '@netlify/functions';
 import { compare, hash } from 'bcryptjs';
 import { connectDB } from './helpers/database';
 import { CustomError } from './helpers/errors';
-import { sendPasswordRecoveryMail } from './helpers/mail';
 import User from './models/user.model';
 
 connectDB(process.env.MONGODB_URI);

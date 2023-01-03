@@ -43,16 +43,14 @@
 </template>
 
 <script lang="ts" setup>
-import { inject, ref } from 'vue';
+import { inject, ref, useAttrs } from 'vue';
 import { useRouter } from 'vue-router';
 import CustomInput from '../../shared/CustomInput.vue';
 import { notify } from '../../shared/Notifications/NotifiactionState';
 import { User, UserInfo } from '../../../types';
 import { AuthServiceKey, LoadingStateKey } from '../../injectionKeys';
 
-const props = defineProps({
-  nextUrl: String,
-});
+const { nextUrl } = useAttrs();
 
 const router = useRouter();
 const user = ref<UserInfo>(new User());
@@ -69,7 +67,7 @@ function logIn() {
 
   authService
     .logIn(user.value)
-    .then(() => router.push(props.nextUrl ?? { name: 'Profile' }))
+    .then(() => router.push(nextUrl ?? { name: 'Profile' }))
     .catch((err) => notify(err, 'error'));
 }
 

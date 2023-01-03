@@ -61,16 +61,14 @@
 </template>
 
 <script lang="ts" setup>
-import { inject, ref } from 'vue';
+import { inject, ref, useAttrs } from 'vue';
 import CustomInput from '../../shared/CustomInput.vue';
 import CustomModal from '../../shared/CustomModal.vue';
 import { User, UserInfo } from '../../../types';
 import { notify } from '../../shared/Notifications/NotifiactionState';
 import { AuthServiceKey, LoadingStateKey } from '../../injectionKeys';
 
-const props = defineProps({
-  nextUrl: String,
-});
+const { nextUrl } = useAttrs();
 
 const user = ref<UserInfo>(new User());
 
@@ -87,7 +85,7 @@ function register() {
   }
 
   authService
-    .register(user.value, props.nextUrl)
+    .register(user.value, nextUrl as string)
     .then(() => (isShowingVerifyMail.value = true))
     .catch((err) => notify(err, 'error'));
 }

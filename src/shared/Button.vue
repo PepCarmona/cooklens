@@ -2,7 +2,7 @@
   <button
     @click.stop="!loading && $emit('click')"
     :class="{ loading, primary, secondary, 'secondary-light': secondaryLight }"
-    :disabled="loading"
+    :disabled="loading || disabled"
   >
     <LoadingSpinner v-if="loading" />
     <slot v-else />
@@ -14,6 +14,7 @@ import LoadingSpinner from '../shared/LoadingSpinner.vue';
 
 defineProps({
   loading: Boolean,
+  disabled: Boolean,
   primary: Boolean,
   secondary: Boolean,
   secondaryLight: Boolean,
@@ -43,9 +44,12 @@ button {
 
 button.primary {
   background-color: var(--accent-color);
+  &.loading {
+    cursor: progress;
+  }
   &:disabled {
     background-color: var(--accent-color-light) !important;
-    cursor: progress;
+    pointer-events: none;
   }
   &:focus {
     background-color: var(--accent-color-hover);

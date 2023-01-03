@@ -47,10 +47,6 @@ const routes: Array<RouteRecordRaw> = [
       import(
         /* webpackChunkName: "authentication" */ '../auth/components/Authentication.vue'
       ),
-    props: (route) => ({
-      nextUrl: route.query.nextUrl,
-      recoveryToken: route.query.token,
-    }),
     meta: { noFooter: true, noHeader: true },
     beforeEnter: (to, from, next) => {
       const code = to.query.code?.toString();
@@ -79,6 +75,9 @@ const routes: Array<RouteRecordRaw> = [
           import(
             /* webpackChunkName: "login" */ '../auth/components/Login.vue'
           ),
+        props: (route) => ({
+          nextUrl: route.query.nextUrl,
+        }),
       },
       {
         path: 'register',
@@ -87,6 +86,9 @@ const routes: Array<RouteRecordRaw> = [
           import(
             /* webpackChunkName: "register" */ '../auth/components/Register.vue'
           ),
+        props: (route) => ({
+          nextUrl: route.query.nextUrl,
+        }),
       },
       {
         path: 'forgotPassword',
@@ -95,6 +97,29 @@ const routes: Array<RouteRecordRaw> = [
           import(
             /* webpackChunkName: "forgotPassword" */ '../auth/components/ForgotPassword.vue'
           ),
+      },
+      {
+        path: 'recover',
+        name: 'recover',
+        component: () =>
+          import(
+            /* webpackChunkName: "passwordRecovery" */ '../auth/components/PasswordRecovery.vue'
+          ),
+        props: (route) => ({
+          token: route.query.token,
+          mail: route.query.mail,
+        }),
+        beforeEnter: (to, from, next) => {
+          const { mail, token } = to.query;
+
+          if (mail && token) {
+            next();
+            return;
+          }
+
+          notify('No recovery token provided', 'error');
+          next({ name: 'login' });
+        },
       },
     ],
   },

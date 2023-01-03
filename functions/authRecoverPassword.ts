@@ -1,5 +1,6 @@
 import { Handler } from '@netlify/functions';
 import { hash } from 'bcryptjs';
+import { getFunctionHost } from './helpers/context';
 import { connectDB } from './helpers/database';
 import { CustomError } from './helpers/errors';
 import { sendPasswordRecoveryMail } from './helpers/mail';
@@ -7,7 +8,7 @@ import User from './models/user.model';
 
 connectDB(process.env.MONGODB_URI);
 
-export const handler: Handler = async (event) => {
+export const handler: Handler = async (event, context) => {
   let email = event.queryStringParameters.email;
 
   try {
@@ -29,10 +30,13 @@ export const handler: Handler = async (event) => {
     const token = await hash(foundUser.username + foundUser.password, 8);
 
     try {
-      await sendPasswordRecoveryMail({
-        ...foundUser.toObject(),
-        recoveryToken: token,
-      });
+      await sendPasswordRecoveryMail(
+        {
+          ...foundUser.toObject(),
+          recoveryToken: token,
+        },
+        getFunctionHost(event, context)
+      );
 
       return {
         statusCode: 200,

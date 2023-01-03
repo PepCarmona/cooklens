@@ -30,8 +30,11 @@ function sendMail(options: SimpleMailOptions) {
   });
 }
 
-export function sendConfirmationMail<T extends Omit<UserInfo, '_id'>>(user: T) {
-  const confirmationUrl = new URL('https://cooklens.pepcarmona.com/auth');
+export function sendConfirmationMail<T extends Omit<UserInfo, '_id'>>(
+  user: T,
+  host: string
+) {
+  const confirmationUrl = new URL(host + '/auth');
   confirmationUrl.searchParams.append('code', user.confirmationCode);
 
   return sendMail({
@@ -107,9 +110,10 @@ export function sendConfirmationMail<T extends Omit<UserInfo, '_id'>>(user: T) {
 
 export function sendPasswordRecoveryMail<
   T extends Omit<UserInfo, '_id'> & { recoveryToken: string }
->(user: T) {
-  const recoveryUrl = new URL('https://cooklens.pepcarmona.com/recover');
+>(user: T, host: string) {
+  const recoveryUrl = new URL(host + '/auth/recover');
   recoveryUrl.searchParams.append('token', user.recoveryToken);
+  recoveryUrl.searchParams.append('mail', user.email);
 
   return sendMail({
     to: user.email,
