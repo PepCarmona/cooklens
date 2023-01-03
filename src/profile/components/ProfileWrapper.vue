@@ -1,7 +1,7 @@
 <template>
   <LoadingSpinner v-if="isLoadingAuth" />
   <div v-else-if="authenticatedUser">
-    <router-view></router-view>
+    <RouterView />
   </div>
 </template>
 

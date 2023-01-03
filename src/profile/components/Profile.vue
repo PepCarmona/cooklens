@@ -24,24 +24,24 @@
         <div class="image"></div>
       </div>
       <div class="links">
-        <router-link :to="{ name: 'ownRecipes' }">
+        <RouterLink :to="{ name: 'ownRecipes' }">
           <Button>
             <i class="las la-book"></i>
             <span>My Recipes</span>
           </Button>
-        </router-link>
-        <router-link :to="{ name: 'favRecipes' }">
+        </RouterLink>
+        <RouterLink :to="{ name: 'favRecipes' }">
           <Button>
             <i class="lar la-heart"></i>
             <span>Favorites</span>
           </Button>
-        </router-link>
-        <router-link :to="{ name: 'myMealPlan' }">
+        </RouterLink>
+        <RouterLink :to="{ name: 'myMealPlan' }">
           <Button>
             <i class="las la-calendar-week"></i>
             <span>Meal Plan</span>
           </Button>
-        </router-link>
+        </RouterLink>
       </div>
       <div class="more-info">
         <!-- <span class="title">More…</span> -->

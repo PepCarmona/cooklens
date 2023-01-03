@@ -10,30 +10,30 @@
     </Button>
     <div v-if="showFooter" id="mobile-sticky-footer">
       <div>
-        <router-link to="/">
+        <RouterLink to="/">
           <i class="las la-home" :class="{ current: routeName === 'Home' }"></i>
-        </router-link>
+        </RouterLink>
       </div>
       <div :class="{ 'mr-2': showAddRecipe || showEditRecipe }">
-        <router-link to="/recipes">
+        <RouterLink to="/recipes">
           <i
             class="las la-search"
             :class="{
               current: routeName === 'RecipesMainView',
             }"
           ></i>
-        </router-link>
+        </RouterLink>
       </div>
       <div :class="{ 'ml-2': showAddRecipe || showEditRecipe }">
-        <router-link to="/profile/myMealPlan">
+        <RouterLink to="/profile/myMealPlan">
           <i
             class="las la-calendar-week"
             :class="{ current: routeName === 'myMealPlan' }"
           ></i>
-        </router-link>
+        </RouterLink>
       </div>
       <div>
-        <router-link to="/profile">
+        <RouterLink to="/profile">
           <i
             class="las la-user-circle"
             :class="{
@@ -42,7 +42,7 @@
                 ['Authentication', 'Profile'].includes(routeName.toString()),
             }"
           ></i>
-        </router-link>
+        </RouterLink>
       </div>
     </div>
   </footer>

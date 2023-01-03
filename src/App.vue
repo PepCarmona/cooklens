@@ -2,7 +2,7 @@
   <Header />
   <main>
     <FloatingNotification />
-    <router-view />
+    <RouterView />
   </main>
   <Footer />
 </template>

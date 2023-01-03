@@ -4,12 +4,12 @@
       <template v-slot:title>My Recipes</template>
     </PageHeader>
     <div class="createRecipe">
-      <router-link :to="{ name: 'CreateRecipe' }">
+      <RouterLink :to="{ name: 'CreateRecipe' }">
         <Button>
           <span>Create Recipe</span>
           <i class="las la-plus"></i>
         </Button>
-      </router-link>
+      </RouterLink>
     </div>
     <LoadingSpinner v-if="isLoadingUser" />
     <RecipeList :recipes="myRecipes" slim />

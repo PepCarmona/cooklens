@@ -64,6 +64,28 @@ const routes: Array<RouteRecordRaw> = [
           notify(err, 'error');
         });
     },
+    children: [
+      {
+        path: '',
+        redirect: { name: 'login' },
+      },
+      {
+        path: 'login',
+        name: 'login',
+        component: () =>
+          import(
+            /* webpackChunkName: "login" */ '../auth/components/Login.vue'
+          ),
+      },
+      {
+        path: 'register',
+        name: 'register',
+        component: () =>
+          import(
+            /* webpackChunkName: "register" */ '../auth/components/Register.vue'
+          ),
+      },
+    ],
   },
   {
     path: '/profile',

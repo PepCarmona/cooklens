@@ -9,30 +9,30 @@
       <span class="menu-close" @click="showMenu = false">
         <i class="las la-times"></i>
       </span>
-      <router-link @click="showMenu = false" to="/" class="menu-title">
+      <RouterLink @click="showMenu = false" to="/" class="menu-title">
         Cooklens
-      </router-link>
+      </RouterLink>
       <div class="items">
-        <router-link @click="showMenu = false" to="/recipes">
+        <RouterLink @click="showMenu = false" to="/recipes">
           Recipes
-        </router-link>
+        </RouterLink>
         <template v-if="!!authenticatedUser">
-          <router-link @click="showMenu = false" to="/profile">
+          <RouterLink @click="showMenu = false" to="/profile">
             My Profile
-          </router-link>
-          <router-link @click="showMenu = false" to="/profile/myMealPlan">
+          </RouterLink>
+          <RouterLink @click="showMenu = false" to="/profile/myMealPlan">
             My Meal Plan
-          </router-link>
+          </RouterLink>
         </template>
-        <router-link v-else @click="showMenu = false" to="/auth">
+        <RouterLink v-else @click="showMenu = false" to="/auth">
           Login
-        </router-link>
-        <router-link @click="showMenu = false" to="/recipe/form">
+        </RouterLink>
+        <RouterLink @click="showMenu = false" to="/recipe/form">
           Add recipe
-        </router-link>
-        <router-link @click="showMenu = false" to="/recipe/random?random=true">
+        </RouterLink>
+        <RouterLink @click="showMenu = false" to="/recipe/random?random=true">
           Random recipe
-        </router-link>
+        </RouterLink>
       </div>
     </div>
   </CustomModal>
@@ -41,7 +41,7 @@
       <span @click="showMenu = true"><i class="las la-bars"></i></span>
     </div>
     <div id="title">
-      <router-link to="/">Cooklens</router-link>
+      <RouterLink to="/">Cooklens</RouterLink>
     </div>
   </header>
 </template>
@@ -142,7 +142,7 @@ header {
   height: fit-content;
   padding-bottom: 3rem;
   width: 100%;
-  & a.router-link-exact-active {
+  & a.RouterLink-exact-active {
     color: var(--accent-color);
   }
   & .items {
@@ -155,7 +155,7 @@ header {
       padding-left: 0;
       text-align: left;
       transition: all 200ms linear;
-      &:not(.router-link-exact-active):hover {
+      &:not(.RouterLink-exact-active):hover {
         color: var(--grey-600);
       }
       &:not(:last-child) {

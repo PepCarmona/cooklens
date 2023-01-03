@@ -5,22 +5,9 @@
     </div>
     <div class="cover-image"></div>
     <div class="form">
-      <router-link class="title" to="/">Cooklens</router-link>
+      <RouterLink class="title" to="/">Cooklens</RouterLink>
       <div class="subtitle">Just enjoy cooking</div>
-      <Login v-if="showLogin" :nextUrl="nextUrl" />
-      <Register v-else :nextUrl="nextUrl" />
-      <div class="alternative">
-        <span v-if="showLogin">
-          No account yet?
-          <span class="toggle-login" @click="showLogin = false">
-            Register
-          </span>
-        </span>
-        <span v-else>
-          Already have an account?
-          <span class="toggle-login" @click="showLogin = true"> Sign in </span>
-        </span>
-      </div>
+      <RouterView />
     </div>
   </div>
 </template>

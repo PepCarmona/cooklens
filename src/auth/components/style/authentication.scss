@@ -1,118 +1,119 @@
 .authentication {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .auth-back {
-	position: absolute;
-	top: 1rem;
-	left: 1rem;
-	height: 40px;
-	width: 40px;
-	border-radius: 40px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: var(--background-contrast-color);
-	box-shadow: 0 0 20px 50px var(--shadow-color);
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-contrast-color);
+  box-shadow: 0 0 20px 50px var(--shadow-color);
 }
 .cover-image {
-	height: 30vh;
-	background-image: url('https://images.unsplash.com/photo-1600335895229-6e75511892c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=870&q=80');
-	background-size: cover;
-	background-position: center;
+  height: 30vh;
+  background-image: url('https://images.unsplash.com/photo-1600335895229-6e75511892c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=870&q=80');
+  background-size: cover;
+  background-position: center;
 }
 .form {
-	flex-grow: 1;
-	background-color: var(--background-contrast-color);
-	margin-top: -1rem;
-	border-top-left-radius: 1rem;
-	border-top-right-radius: 1rem;
-	& > .title {
-		display: block;
-		font-family: var(--title-font);
-		font-size: 40px;
-		margin-top: 2.5rem;
-	}
+  flex-grow: 1;
+  background-color: var(--background-contrast-color);
+  margin-top: -1rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  & > .title {
+    display: block;
+    font-family: var(--title-font);
+    font-size: 40px;
+    margin-top: 2.5rem;
+  }
 }
 .auth-container {
-	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	margin-top: 2rem;
-	padding: 1rem;
-	& > * {
-		width: 100%;
-		margin-top: 2rem;
-		&:first-child {
-			margin-top: 0;
-		}
-	}
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  padding: 1rem;
+  & > * {
+    width: 100%;
+    margin-top: 2rem;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
 
-	& button.action {
-		font-size: 18px;
-	}
+  & button.action {
+    font-size: 18px;
+  }
 
-	& .errors {
-		margin-top: 1rem;
-		text-align: left;
-		font-size: 0.8rem;
-		padding: 0.2rem 0;
-		color: var(--error-color);
-	}
+  & .errors {
+    margin-top: 1rem;
+    text-align: left;
+    font-size: 0.8rem;
+    padding: 0.2rem 0;
+    color: var(--error-color);
+  }
 }
 
 .alternative {
-	padding-right: 1rem;
-	text-align: right;
-	margin-bottom: 1rem;
-	& > span {
-		font-size: 13px;
-		&:hover {
-			text-decoration: underline;
-		}
-	}
+  padding-right: 1rem;
+  text-align: right;
+  margin-bottom: 1rem;
+  & > span {
+    font-size: 13px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 
-	& .toggle-login {
-		font-size: 14px;
-		color: var(--accent-color);
-		cursor: pointer;
-	}
+  & .toggle-login {
+    font-size: 14px;
+    color: var(--accent-color);
+    text-decoration-color: black;
+    cursor: pointer;
+  }
 }
 
 .verify-mail {
-	font-size: 18px;
+  font-size: 18px;
 }
 .mail-icon {
-	font-size: 64px;
-	margin-bottom: 1rem;
-	color: var(--accent-color);
-	animation-name: slide-in-out;
-	animation-duration: 3s;
-	animation-iteration-count: infinite;
+  font-size: 64px;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+  animation-name: slide-in-out;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
 }
 @keyframes slide-in-out {
-	0% {
-		opacity: 0;
-		transform: translateX(-100vw);
-	}
+  0% {
+    opacity: 0;
+    transform: translateX(-100vw);
+  }
 
-	30% {
-		opacity: 1;
-		transform: translateX(0);
-	}
+  30% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 
-	65% {
-		opacity: 1;
-		transform: translateX(0);
-	}
+  65% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 
-	70% {
-		opacity: 1;
-		transform: translateX(-40px);
-	}
+  70% {
+    opacity: 1;
+    transform: translateX(-40px);
+  }
 
-	100% {
-		opacity: 0;
-		transform: translateX(100vw);
-	}
+  100% {
+    opacity: 0;
+    transform: translateX(100vw);
+  }
 }

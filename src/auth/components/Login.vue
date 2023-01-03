@@ -25,6 +25,14 @@
     <Button class="action" @click="logIn" :loading="isLoadingAuth" primary>
       Login
     </Button>
+    <div class="alternative">
+      <span>
+        No account yet?
+        <RouterLink class="toggle-login" :to="{ name: 'register' }">
+          Register
+        </RouterLink>
+      </span>
+    </div>
   </div>
 </template>
 
